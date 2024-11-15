@@ -7,7 +7,7 @@
         This module adds a boolean field to analytic accounts to block them
         from being used but allows users to still consult them.
     """,
-    'depends': ['account'],
+    'depends': ['stock_request', 'account'],
     'data': [
         'views/analytic_account_views.xml',
     ],
