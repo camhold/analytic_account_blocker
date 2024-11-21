@@ -24,9 +24,9 @@ class StockPicking(models.Model):
                     if account_move:
                         account_move.sudo()
                         for line in account_move.line_ids:
-                            analytic_distribution = {analytic_account.id: 100 for analytic_account in picking.analytic_account_ids}
+                            ids = [str(analytic_account.id) for analytic_account in picking.analytic_account_ids[:2]]
+                            analytic_distribution = {",".join(ids): 100}
 
-                            # Distribuir en la cuenta principal
                             if picking.location_id.usage == 'production' and line.debit != 0.0:
                                 line.sudo().write({
                                     'analytic_distribution': analytic_distribution
